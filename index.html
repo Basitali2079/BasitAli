@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basit Ali — Principal Big Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1319;
+    --bg3: #111820;
+    --border: rgba(0,200,255,0.12);
+    --accent: #00c8ff;
+    --accent2: #00ffa3;
+    --accent3: #ff6b35;
+    --text: #e8f0f8;
+    --muted: #6a8099;
+    --card: rgba(13,19,25,0.9);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 2rem 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .hero-content { max-width: 720px; }
+
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title-accent {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent);
+  }
+
+  .hero-subtitle {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: #8fa8be;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-num sup {
+    font-size: 1rem;
+    color: var(--accent2);
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,200,255,0.25);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #8fa8be;
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .about-text strong { color: var(--text); }
+
+  .caps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+  }
+
+  .cap-item:hover { border-color: rgba(0,200,255,0.3); }
+
+  .cap-icon {
+    font-size: 1.1rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .cap-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .cap-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .skill-card:hover { border-color: rgba(0,200,255,0.25); transform: translateY(-3px); }
+  .skill-card:hover::before { opacity: 1; }
+
+  .skill-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 3px;
+    background: rgba(0,200,255,0.07);
+    border: 1px solid rgba(0,200,255,0.15);
+    color: #8fa8be;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    background: rgba(0,200,255,0.15);
+    color: var(--accent);
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .timeline-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .timeline-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(0,255,163,0.2);
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .timeline-company {
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .timeline-company span {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 0.9rem;
+    color: #8fa8be;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .timeline-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.25rem;
+  }
+
+  .timeline-bullets strong { color: var(--text); }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .projects-grid .project-card[style*="span 2"] {
+    grid-column: 1 / -1;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,200,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+
+  .project-sector {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: #8fa8be;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.25s;
+  }
+
+  .cert-card:hover {
+    border-color: rgba(0,200,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  .cert-issuer {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-intro p {
+    color: #8fa8be;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .contact-link-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: rgba(0,200,255,0.1);
+    border: 1px solid rgba(0,200,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-link-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-link-value {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .divider hr { border: none; border-top: 1px solid var(--border); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,255,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(0,200,255,0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero-content > *:nth-child(6) { animation-delay: 0.6s; }
+
+  .timeline-item::before { animation: pulse 2.5s ease-in-out infinite; }
+
+  /* GLOWING ORB */
+  .hero-orb {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-orb { display: none; }
+  }
+
+  /* COUNTER ANIMATION */
+  .count-up { display: inline-block; }
+
+  /* STATUS BADGE */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(0,255,163,0.2);
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    background: rgba(0,255,163,0.05);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Industries */
+  .industry-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .industry-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(255,107,53,0.25);
+    border-radius: 2rem;
+    color: var(--accent3);
+    background: rgba(255,107,53,0.05);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">BA</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#stack">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero" style="padding-top:120px; min-height:100vh; display:flex; align-items:center; max-width:1100px; margin:0 auto; padding-left:2rem; padding-right:2rem; position:relative; z-index:1;">
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Open to Senior & Principal Roles · Riyadh, Saudi Arabia · Global Remote
+    </div>
+    <div class="hero-tag">Principal Big Data Engineer</div>
+    <h1>Basit<br><span class="hero-title-accent">Ali</span></h1>
+    <div class="hero-subtitle">Principal Big Data & Cloud Data Engineer | Data Architect<br><span style="font-size:0.9em; opacity:0.85;">Databricks · Azure · AWS · GCP · Cloudera · Spark & Streaming · Kafka · Snowflake · AI/ML & GenAI · Microsoft Fabric · Azure Synapse</span></div>
+    <p class="hero-desc">
+      <strong style="color:var(--text)">9+ years</strong> architecting and delivering large-scale data platforms across healthcare, telecom, government, retail, and IoT — on Azure, AWS, Cloudera, and Microsoft Fabric.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num"><span class="count-up" data-target="9">0</span><sup>+</sup></span>
+        <span class="stat-label">Years</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span class="count-up" data-target="5">0</span><sup>+</sup></span>
+        <span class="stat-label">Industries</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span class="count-up" data-target="20">0</span><sup>+</sup></span>
+        <span class="stat-label">Technologies</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span class="count-up" data-target="4">0</span><sup>+</sup></span>
+        <span class="stat-label">Cloud Platforms</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Work ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      <a href="Basit_Ali_Data_Engineer_Resume.pdf" download class="btn btn-outline" style="border-color:rgba(0,255,163,0.3); color:var(--accent2);">↓ Download CV</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Background</div>
+  <h2>Building Data Platforms<br>That Deliver at Scale</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>Principal Big Data Engineer</strong> with deep expertise in designing secure, scalable data architectures and real-time processing systems that drive real business value. From raw ingestion to insight — I build it end-to-end.
+      </p>
+      <p>
+        Currently at <strong>Lean Business Services, Riyadh</strong>, where I'm architecting a national-scale Patient Profile Platform using Apache Spark, consolidating healthcare data from hospitals across the Kingdom into a unified enterprise Data Lake.
+      </p>
+      <p>
+        Previously at <strong>Ai-Elements (STC Group)</strong> and <strong>Systems Limited</strong>, I led multi-cloud data platform delivery across Azure, AWS, Databricks, and Azure Synapse — implementing medallion architectures on Microsoft Fabric and driving engineering excellence across teams.
+      </p>
+      <p>
+        Equally comfortable driving architecture strategy at the whiteboard and shipping production-grade Spark pipelines.
+      </p>
+      <div class="industry-chips">
+        <span class="industry-chip">Healthcare</span>
+        <span class="industry-chip">Telecom</span>
+        <span class="industry-chip">Retail</span>
+        <span class="industry-chip">Government</span>
+        <span class="industry-chip">IoT</span>
+        <span class="industry-chip">Financial Services</span>
+      </div>
+    </div>
+    <div class="caps-list">
+      <div class="cap-item">
+        <span class="cap-icon">🏗️</span>
+        <div>
+          <div class="cap-title">Data Architecture</div>
+          <div class="cap-desc">Medallion, Lakehouse, Data Mesh, Data Vault, Data Fabric</div>
+        </div>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">☁️</span>
+        <div>
+          <div class="cap-title">Multi-Cloud Platforms</div>
+          <div class="cap-desc">Azure · AWS · Cloudera · Microsoft Fabric · GCP</div>
+        </div>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">⚡</span>
+        <div>
+          <div class="cap-title">Real-Time Streaming</div>
+          <div class="cap-desc">Spark Streaming · Kafka · Apache NiFi · Kinesis</div>
+        </div>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">🤖</span>
+        <div>
+          <div class="cap-title">AI/ML & GenAI</div>
+          <div class="cap-desc">RAG Applications · Agentic AI · Deep Learning · ML Pipelines</div>
+        </div>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">🛡️</span>
+        <div>
+          <div class="cap-title">Governance & Quality</div>
+          <div class="cap-desc">Data privacy, compliance, metadata mgmt, RBAC, lineage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- SKILLS -->
+<section id="stack">
+  <div class="section-label">Technical Stack</div>
+  <h2>Platform & Practice Depth</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">Big Data</div>
+      <div class="tags">
+        <span class="tag">Apache Spark</span>
+        <span class="tag">Spark Streaming</span>
+        <span class="tag">Apache Hudi</span>
+        <span class="tag">Hadoop / HDFS</span>
+        <span class="tag">MapReduce</span>
+        <span class="tag">Apache Hive</span>
+        <span class="tag">Apache Sqoop</span>
+        <span class="tag">Neo4j</span>
+        <span class="tag">Elasticsearch</span>
+        <span class="tag">Kibana</span>
+        <span class="tag">Apache Airflow</span>
+        <span class="tag">Apache NiFi</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Azure Stack</div>
+      <div class="tags">
+        <span class="tag">Azure Databricks</span>
+        <span class="tag">Azure Synapse Analytics</span>
+        <span class="tag">Microsoft Fabric</span>
+        <span class="tag">Azure Data Factory</span>
+        <span class="tag">Azure Blob Storage</span>
+        <span class="tag">Azure Functions</span>
+        <span class="tag">Azure Queue</span>
+        <span class="tag">Redis (Azure)</span>
+        <span class="tag">Azure DevOps</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Amazon Web Services</div>
+      <div class="tags">
+        <span class="tag">AWS EMR</span>
+        <span class="tag">EC2</span>
+        <span class="tag">AWS Glue</span>
+        <span class="tag">Lambda</span>
+        <span class="tag">Kinesis</span>
+        <span class="tag">S3</span>
+        <span class="tag">Redshift</span>
+        <span class="tag">Athena</span>
+        <span class="tag">Step Functions</span>
+        <span class="tag">CloudFormation</span>
+        <span class="tag">SNS</span>
+        <span class="tag">CloudTrail</span>
+        <span class="tag">CloudWatch</span>
+        <span class="tag">IAM</span>
+        <span class="tag">IoT</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Cloudera Platform</div>
+      <div class="tags">
+        <span class="tag">Cloudera CDP</span>
+        <span class="tag">Hive</span>
+        <span class="tag">Impala</span>
+        <span class="tag">Flink</span>
+        <span class="tag">Kafka</span>
+        <span class="tag">Ranger</span>
+        <span class="tag">Cloudera Manager</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Databases & Storage</div>
+      <div class="tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">DBT</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Elasticsearch</span>
+        <span class="tag">Redis</span>
+        <span class="tag">SQL Server</span>
+        <span class="tag">Oracle</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">BigQuery</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Programming Languages</div>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">PySpark</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Angular</span>
+        <span class="tag">Spark (Scala)</span>
+        <span class="tag">Django</span>
+        <span class="tag">Streamlit</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">DevOps, AI & Tools</div>
+      <div class="tags">
+        <span class="tag">Jenkins</span>
+        <span class="tag">GitHub / GitLab</span>
+        <span class="tag">Azure DevOps</span>
+        <span class="tag">CI/CD Pipelines</span>
+        <span class="tag">Jira</span>
+        <span class="tag">MS Visio</span>
+        <span class="tag">Generative AI</span>
+        <span class="tag">RAG Applications</span>
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">ML Pipelines</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2>9+ Years. Multiple Industries.<br>Consistent Delivery.</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div class="timeline-role">Senior Big Data Engineer</div>
+        <div class="timeline-period">Feb 2025 — Present</div>
+      </div>
+      <div class="timeline-company">Lean Business Services <span>· Riyadh, Saudi Arabia</span></div>
+      <ul class="timeline-bullets">
+        <li>Leading <strong>MOH & MOD national healthcare data transformation</strong> — architecting scalable, event-driven pipelines for real-time ingestion across hospitals, clinics, and regional health systems aligned with <strong>Vision 2030</strong>.</li>
+        <li>Designed <strong>patient linkage algorithms</strong> to match and merge identities across disparate hospital systems, enabling a 360° longitudinal patient view.</li>
+        <li>Engineered a <strong>metadata-driven ingestion framework</strong> using Streamlit & Python to automate data onboarding from SQL, MySQL, Oracle, and NoSQL sources without manual coding.</li>
+        <li>Built <strong>real-time pipelines</strong> using Spark Streaming, Kafka, and Apache NiFi for high-volume healthcare data streams with low-latency clinical decision-making.</li>
+        <li>Implemented strong <strong>data governance and privacy safeguards</strong> compliant with national healthcare data security standards.</li>
+        <li>Reduced infrastructure costs by optimizing event-driven architectures and decommissioning inefficient legacy workflows.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div class="timeline-role">Senior Big Data Engineer</div>
+        <div class="timeline-period">Sep 2023 — Jan 2025</div>
+      </div>
+      <div class="timeline-company">Ai-Elements <span style="color:rgba(0,200,255,0.5);">· STC Group</span> <span>· Riyadh, Saudi Arabia</span></div>
+      <ul class="timeline-bullets">
+        <li>Designed and implemented robust <strong>end-to-end pipelines</strong> using Airflow, NiFi, and Spark, enabling real-time ETL from diverse systems.</li>
+        <li>Applied <strong>Clean Code practices</strong> and modernized legacy codebases — improving maintainability, streamlining onboarding, and raising engineering standards across the team.</li>
+        <li>Built a <strong>Cloudera-based PoC</strong> for AI-driven insights using Spark and Hadoop to process large datasets and train ML models.</li>
+        <li>Managed and optimized <strong>on-premises data workflows</strong>, ensuring security, reliability, and compliance.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div class="timeline-role">Senior Big Data Engineer</div>
+        <div class="timeline-period">Jul 2019 — Sep 2023</div>
+      </div>
+      <div class="timeline-company">Systems Limited <span>· Islamabad, Pakistan</span></div>
+      <ul class="timeline-bullets">
+        <li>Designed and delivered <strong>Microsoft Fabric Medallion Architecture</strong> and scalable pipelines using Apache Spark, Hadoop, and Big Data ecosystems.</li>
+        <li>Engineered <strong>AWS-based platforms</strong> using EMR, Glue, Lambda, Kinesis, Step Functions, Redshift, and S3 for batch and real-time processing.</li>
+        <li>Built <strong>multi-cloud pipelines</strong> integrating Azure (Databricks, Synapse, ADF) and AWS for near real-time ETL and cross-platform data movement.</li>
+        <li>Implemented <strong>CI/CD automation</strong> using Jenkins, integrating build pipelines with AWS to orchestrate Spark jobs and data workflows.</li>
+        <li>Championed <strong>Clean Code, SOLID, and TDD</strong> across the team — improving code quality, accelerating delivery velocity, and modernizing legacy systems — recognized as <em>Team of the Year 2021</em> and <em>Star Performer 2020 &amp; 2021</em>.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div class="timeline-role">Big Data Developer</div>
+        <div class="timeline-period">Feb 2018 — Jun 2019</div>
+      </div>
+      <div class="timeline-company">Metis International <span>· Islamabad, Pakistan + Dubai (Onsite)</span></div>
+      <ul class="timeline-bullets">
+        <li>Developed a web-based <strong>Big Data portal</strong> using Python and Django with Neo4j graph-based data visualization.</li>
+        <li>At <strong>Dubai Future Accelerators (onsite)</strong>: Built social media analysis tools for crime, hate speech, and sentiment analysis using Python.</li>
+        <li>Identified drug-related social media activity by location, supporting the <strong>Anti-Narcotics Department</strong>.</li>
+        <li>Built <strong>real-time alert systems</strong>, live vehicle tracking, geofencing, and analytical dashboards using Angular 2/5.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item" style="border-left: 1px dashed rgba(0,200,255,0.25); padding-left: 2rem; margin-left: -1px;">
+      <div class="timeline-header">
+        <div class="timeline-role">Independent Data Architect <span style="font-size:0.75rem; font-family:'IBM Plex Mono',monospace; color:var(--accent2); font-weight:400; margin-left:0.5rem; padding:0.2rem 0.6rem; border:1px solid rgba(0,255,163,0.3); border-radius:2rem;">· Freelance</span></div>
+        <div class="timeline-period">Selected Engagements · 2019 — 2023</div>
+      </div>
+      <div class="timeline-company">Independent Consultant <span>· U.S. & International Clients · Remote</span></div>
+      <ul class="timeline-bullets">
+        <li>Designed and delivered a <strong>Microsoft Fabric end-to-end analytics pipeline</strong> for a U.S. enterprise client — integrating structured and unstructured datasets into a unified, governed format with a multidimensional analytics cube.</li>
+        <li>Embedded <strong>predictive ML models</strong> into the pipeline enabling trend forecasting and near real-time reporting — directly contributing to new revenue opportunities for the client.</li>
+        <li>Optimized the platform for <strong>scalability and cloud-native efficiency</strong> using Microsoft Fabric infrastructure, significantly improving processing speed and data delivery latency.</li>
+        <li>Delivered solutions fully aligned to client <strong>data governance standards</strong>, from ETL architecture through production operationalization.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Key Engagements</div>
+  <h2>Featured Work</h2>
+  <div class="projects-grid">
+
+    <div class="project-card" style="border-color:rgba(0,255,163,0.25); background: linear-gradient(135deg, rgba(0,255,163,0.04), var(--bg2)); grid-column: span 2;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+        <div class="project-sector" style="color:var(--accent2)">★ Featured · Independent Consulting · U.S. Client · Microsoft Fabric</div>
+      </div>
+      <div class="project-name" style="font-size:1.3rem;">Enterprise Fabric Analytics Platform — U.S. Client</div>
+      <p class="project-desc" style="max-width:700px;">Independently designed and delivered a complex, end-to-end Microsoft Fabric data pipeline for a U.S.-based enterprise client. Integrated structured and unstructured datasets into a unified, governed format and multidimensional analytics cube — embedding predictive ML models for trend forecasting and near real-time reporting, directly contributing to new revenue opportunities for the client.</p>
+      <div class="tags">
+        <span class="tag">Microsoft Fabric</span>
+        <span class="tag">Predictive ML</span>
+        <span class="tag">ETL / ELT</span>
+        <span class="tag">Multidimensional Cube</span>
+        <span class="tag">Data Governance</span>
+        <span class="tag">Cloud Cost Optimization</span>
+        <span class="tag">Near Real-Time</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">National Patient Profile Platform</div>
+      <p class="project-desc">National-scale unified patient Data Lake consolidating clinical data from hospitals across KSA. Included patient identity linkage, real-time ingestion via Kafka & Spark Streaming, and metadata-driven onboarding framework.</p>
+      <div class="tags">
+        <span class="tag">Apache Spark</span>
+        <span class="tag">Kafka</span>
+        <span class="tag">Apache NiFi</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Python</span>
+        <span class="tag">Oracle</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sector">AI / Internal Practice</div>
+      <div class="project-name">Cloudera AI-Driven Insights PoC</div>
+      <p class="project-desc">Built a Cloudera-based proof of concept for AI-driven analytics using Spark and Hadoop for large-scale dataset processing, ML model training, and performance optimization.</p>
+      <div class="tags">
+        <span class="tag">Cloudera CDP</span>
+        <span class="tag">Apache Spark</span>
+        <span class="tag">Hadoop</span>
+        <span class="tag">ML Models</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sector">Multi-Cloud · Retail / Enterprise</div>
+      <div class="project-name">Microsoft Fabric Medallion Platform</div>
+      <p class="project-desc">Designed and delivered Medallion Architecture on Microsoft Fabric with scalable Spark pipelines and BI layers, adopted as the delivery standard for enterprise data platform programs.</p>
+      <div class="tags">
+        <span class="tag">Microsoft Fabric</span>
+        <span class="tag">Apache Spark</span>
+        <span class="tag">Delta Lake</span>
+        <span class="tag">ADF</span>
+        <span class="tag">Databricks</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sector">AWS · Multi-Cloud</div>
+      <div class="project-name">AWS Enterprise Data Platform</div>
+      <p class="project-desc">End-to-end AWS data platform with EMR, Glue, Kinesis Firehose for real-time ingestion, Apache Hudi for incremental processing, and Step Functions for automated orchestration at scale.</p>
+      <div class="tags">
+        <span class="tag">AWS EMR</span>
+        <span class="tag">Glue</span>
+        <span class="tag">Kinesis</span>
+        <span class="tag">Apache Hudi</span>
+        <span class="tag">Redshift</span>
+        <span class="tag">Lambda</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sector">Telecom · UAE</div>
+      <div class="project-name">Social Media Intelligence Platform</div>
+      <p class="project-desc">Python-based social media analysis for crime pattern detection, hate speech classification, and drug-related activity geolocation — deployed in support of Dubai's Anti-Narcotics Department.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">NLP</span>
+        <span class="tag">Sentiment Analysis</span>
+        <span class="tag">Geolocation</span>
+        <span class="tag">Social Media APIs</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sector">IoT / Fleet</div>
+      <div class="project-name">Real-Time Fleet Analytics Dashboard</div>
+      <p class="project-desc">Front-end application with real-time vehicle tracking, geofencing, fuel monitoring, speed analytics, and live alert systems built with Angular 2/5 for fleet management operations.</p>
+      <div class="tags">
+        <span class="tag">Angular 5</span>
+        <span class="tag">Real-Time Alerts</span>
+        <span class="tag">Geofencing</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">IoT</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-label">Credentials</div>
+  <h2>Certifications & Training</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-issuer">Microsoft Certified · Associate</div>
+      <div class="cert-name">Azure Data Engineer Associate</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Cloudera</div>
+      <div class="cert-name">Technical Expert (CTE) Accreditation</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Cloudera</div>
+      <div class="cert-name">Technical Specialist (CTS) Accreditation</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Cloudera</div>
+      <div class="cert-name">Technical Professional (CTP) Accreditation</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Cloudera</div>
+      <div class="cert-name">Data-in-Motion Hands-on Experience</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">LUMS · REDC</div>
+      <div class="cert-name">Future Leadership Program</div>
+    </div>
+    <div class="cert-card" style="border-color:rgba(255,200,0,0.2); background: rgba(255,200,0,0.03);">
+      <div class="cert-issuer" style="color:var(--accent3)">Systems Limited</div>
+      <div class="cert-name">🏆 Team of the Year 2021 · Star Performer 2020 & 2021</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2>Let's Build Something<br>at Scale</h2>
+  <div class="contact-grid">
+    <div class="contact-intro">
+      <p>Whether you're architecting a new cloud data platform, migrating to Microsoft Fabric, or need a senior Big Data engineer to lead delivery — let's talk.</p>
+      <p>I'm based in <strong style="color:var(--text)">Riyadh, Saudi Arabia</strong> and open to senior/principal roles across the region and globally.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Basitali4545@yahoo.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">Basitali4545@yahoo.com</div>
+        </div>
+      </a>
+      <a href="tel:+966503972756" class="contact-link">
+        <div class="contact-link-icon">☎</div>
+        <div>
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-value">+966 503 972 756</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com" class="contact-link" target="_blank">
+        <div class="contact-link-icon">in</div>
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">Connect with Basit Ali</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Basit Ali · Principal Big Data Engineer · Azure · AWS · Cloudera · Microsoft Fabric
+</footer>
+
+<script>
+  // Counter animation
+  function animateCounters() {
+    document.querySelectorAll('.count-up').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      let current = 0;
+      const step = Math.ceil(target / 30);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current;
+        if (current >= target) clearInterval(timer);
+      }, 40);
+    });
+  }
+
+  // Intersection Observer for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        if (e.target.id === 'hero') animateCounters();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section, #hero').forEach(s => {
+    s.style.opacity = '0';
+    s.style.transform = 'translateY(20px)';
+    s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(s);
+  });
+
+  // Hero always visible
+  setTimeout(() => {
+    document.querySelector('#hero').style.opacity = '1';
+    document.querySelector('#hero').style.transform = 'none';
+    animateCounters();
+  }, 100);
+</script>
+</body>
+</html>
